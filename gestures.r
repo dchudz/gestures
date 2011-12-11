@@ -1,3 +1,9 @@
+#Feel free to copy/modify for any purpose, as long as you:
+# --attribute me by name (David Chudzicki)
+# --attribute me by URL (www.learnfromdata.com)
+# --leave this notice attached
+
+
 library("plyr")
 
 #this is my convenient function for plotting to a file on my webserver for viewing in a browser

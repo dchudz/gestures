@@ -1,4 +1,12 @@
 
+#Feel free to copy/modify for any purpose, as long as you:
+# --attribute me by name (David Chudzicki)
+# --attribute me by URL (www.learnfromdata.com)
+# --leave this notice attached
+
+
+
+
 #read a couple frames as an example
 imagem = aviread("./data/devel01/M_1.avi",1);
 imagek = aviread("./data/devel01/K_1.avi",1);

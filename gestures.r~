@@ -1,5 +1,0 @@
-
-library("R.matlab")
-
-Ks47 <- readMat("Ks47.mat")
-
