@@ -5,6 +5,8 @@
 
 
 library("plyr")
+#library("emdist")
+library("Matrix")
 
 #this is my convenient function for plotting to a file on my webserver for viewing in a browser
 media = "/home/ubuntu/dj/mysite/media/gestures/"
@@ -26,6 +28,7 @@ K <- Ks47[[1]]
 names(Ks47[[1]][[1]])
 dim(K[[1]][[1]])
 
+
 #decide on the width (FrameSize) and length (NumFrames) of my matrix for holding the frames
 NumFrames <- sum( sapply(K[1:10], length) )
 FrameSize <- prod( dim(K[[1]][[1]]) )
@@ -42,6 +45,28 @@ for (videoNum in 1:length(K[1:10]) ) {
   }
 }
 
+system.time( d <- dist(KM) )
+
+
+dm <- as.matrix(d)
+splot( image ( dm  ) )
+splot(hist(as.vector(dm)))
+quantile(as.vector(dm), probs = seq(0,1,.01))
+?quantile
+
+dm01 <- (dm < 8.47)
+splot ( image ( dm01 ))
+
+Degrees = rowSums(dm01)
+DegreeMatrix = Diagonal(x = Degrees)
+L = DegreeMatrix - dm01
+
+LEig <- eigen(L, symmetric = T)
+
+EigVecs <- LEig$vectors[,dim(KM)[1]:1]
+LEig$values
+
+?eigen
 #do PCA
 Kpc <- prcomp(KM[,1:FrameSize])
 
@@ -64,5 +89,7 @@ splot(
 #        plotpcs(c(1,3))
 #        plotpcs(2:3)            
       })
+
+
 
 
